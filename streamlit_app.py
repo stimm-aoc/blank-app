@@ -24,9 +24,9 @@ LWX_FIPS = [
 # Cache the data loading so it only downloads from the Census Bureau once
 @st.cache_data
 def load_map_data():
-    # Streamlit and GeoPandas can read ZIP files directly from a URL!
-    url = "https://www2.census.gov/geo/tiger/GENZ2018/shp/cb_2018_us_county_20m.zip"
-    full_gdf = gpd.read_file(url)
+    # Pointing directly to the local file you just extracted
+    shapefile_path = "cb_2018_us_county_20m.shp" 
+    full_gdf = gpd.read_file(shapefile_path)
     lwx_gdf = full_gdf[full_gdf['GEOID'].isin(LWX_FIPS)].copy()
     return lwx_gdf
 
